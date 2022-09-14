@@ -90,7 +90,7 @@ services:
     volumes:
       - ./snowflake-kafka-connector-1.8.1.jar:/usr/local/share/kafka/plugins/snowflake-kafka-connector-1.8.1.jar
       - ./avro-1.11.1.jar:/opt/kafka/libs/avro-1.11.1.jar
-      - ./bc-fips-1.0.2.jar:/opt/kafka/libs/bc-fips-1.0.2.3.jar
+      - ./bc-fips-1.0.2.3.jar:/opt/kafka/libs/bc-fips-1.0.2.3.jar
       - ./bcpkix-fips-1.0.6.jar:/opt/kafka/libs/bcpkix-fips-1.0.6.jar
       - ./snowflake-jdbc-3.13.22.jar:/opt/kafka/libs/snowflake-jdbc-3.13.22.jar
       - ./connect-distributed.properties:/connect-distributed.properties
