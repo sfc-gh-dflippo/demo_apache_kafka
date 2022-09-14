@@ -1,7 +1,7 @@
 version: '3'
 services:
   zookeeper:
-    image: zookeeper
+    image: zookeeper:latest
     container_name: zookeeper
     ports:
       - "2181:2181"
@@ -14,7 +14,7 @@ services:
     stop_grace_period: 60s
 
   kafka-1:
-    image: wurstmeister/kafka:2.12-2.5.0
+    image: wurstmeister/kafka:latest
     container_name: kafka-1
     depends_on: 
       - zookeeper
@@ -34,7 +34,7 @@ services:
     stop_grace_period: 60s
 
   kafka-2:
-    image: wurstmeister/kafka:2.12-2.5.0
+    image: wurstmeister/kafka:latest
     container_name: kafka-2
     depends_on: 
       - zookeeper
@@ -54,7 +54,7 @@ services:
     stop_grace_period: 60s
 
   kafka-3:
-    image: wurstmeister/kafka:2.12-2.5.0
+    image: wurstmeister/kafka:latest
     hostname: kafka-3
     container_name: kafka-3
     depends_on: 
@@ -75,7 +75,7 @@ services:
     stop_grace_period: 60s
 
   kafka-connector:
-    image: wurstmeister/kafka:2.12-2.5.0
+    image: wurstmeister/kafka:latest
     container_name: kafka-connector
     depends_on: 
       - zookeeper
@@ -88,10 +88,11 @@ services:
       KAFKA_HEAP_OPTS: "-Xms256M -Xmx3G"
     restart: always
     volumes:
-      - ./snowflake-kafka-connector-1.5.2.jar:/usr/local/share/kafka/plugins/snowflake-kafka-connector-1.5.2.jar
-      - ./bc-fips-1.0.2.jar:/opt/kafka/libs/bc-fips-1.0.2.jar
-      - ./bcpkix-fips-1.0.3.jar:/opt/kafka/libs/bcpkix-fips-1.0.3.jar
-      - ./snowflake-jdbc-3.13.0.jar:/opt/kafka/libs/snowflake-jdbc-3.13.0.jar
+      - ./snowflake-kafka-connector-1.8.1.jar:/usr/local/share/kafka/plugins/snowflake-kafka-connector-1.8.1.jar
+      - ./avro-1.11.1.jar:/opt/kafka/libs/avro-1.11.1.jar
+      - ./bc-fips-1.0.2.jar:/opt/kafka/libs/bc-fips-1.0.2.3.jar
+      - ./bcpkix-fips-1.0.6.jar:/opt/kafka/libs/bcpkix-fips-1.0.6.jar
+      - ./snowflake-jdbc-3.13.22.jar:/opt/kafka/libs/snowflake-jdbc-3.13.22.jar
       - ./connect-distributed.properties:/connect-distributed.properties
     command: ["connect-distributed.sh", "/connect-distributed.properties"]
     stop_grace_period: 60s
