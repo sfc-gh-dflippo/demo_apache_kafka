@@ -1,0 +1,20 @@
+{
+    "name":"snowflake_connector",
+    "config":{
+      "connector.class":"com.snowflake.kafka.connector.SnowflakeSinkConnector",
+      "tasks.max":"1",
+      "topics":"test-topic",
+      "snowflake.topic2table.map": "test-topic:test_topic",
+      "buffer.count.records":"10000",
+      "buffer.flush.time":"60",
+      "buffer.size.bytes":"1048576",
+      "snowflake.url.name":"MY_ACCOUNT.snowflakecomputing.com",
+      "snowflake.user.name":"dflippo",
+      "snowflake.private.key":"MIIE6T ... SxjCMGig2g==",
+      "snowflake.private.key.passphrase":"MyVoiceIsMyPasswordVerifyMe",
+      "snowflake.database.name":"DFLIPPO",
+      "snowflake.schema.name":"PUBLIC",
+      "key.converter":"org.apache.kafka.connect.storage.StringConverter",
+      "value.converter":"com.snowflake.kafka.connector.records.SnowflakeJsonConverter"
+    }
+   }
